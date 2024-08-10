@@ -1,0 +1,77 @@
+
+class Node<T> {
+    T data;
+    Node<T> next;
+
+    Node(T data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList<T> {
+    Node<T> head = null;
+
+    // Method to insert a node at the beginning
+    void insertAtBeginning(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+    }
+
+    void ins_any(int pos ,T val )
+    {
+        Node<T> nn = new Node<>(val);
+        Node<T> temp = head;
+        for(int i=1;i<pos-1;i++)
+        {
+            temp=temp.next;
+
+        }
+
+        nn.next=temp.next;
+        temp.next=nn;
+
+
+
+    }
+    void ins_last(T val)
+    {
+        Node<T> nn = new Node<>(val);
+        Node<T> temp=head;
+        while(temp.next != null)
+        {
+            temp=temp.next;
+        }
+        temp.next=nn;
+
+    }
+    void traverse() {
+        Node<T> temp = head;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+}
+
+// Main class to test the LinkedList implementation
+public class Main {
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.insertAtBeginning(11);
+        list.insertAtBeginning(81);
+        list.insertAtBeginning(55);
+        list.insertAtBeginning(99);
+        list.insertAtBeginning(31);
+        list.ins_any(3,98);
+        list.ins_any(4,48);
+        list.ins_last(12);
+        list.ins_last(16);
+        list.traverse();
+    }
+}
