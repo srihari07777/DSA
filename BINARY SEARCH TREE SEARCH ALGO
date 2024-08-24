@@ -1,0 +1,78 @@
+class Tree {
+    Tree left;
+    int data;
+    Tree right;
+
+    Tree(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+class Opr {
+    Tree root = null;
+
+    void insert(int data)
+    {
+        root = ins(root,data);
+    }
+    Tree ins(Tree root, int data) {
+        if (root == null) {
+            root = new Tree(data);
+            return root;
+        } else if (data < root.data) {
+            root.left = ins(root.left, data);
+        } else if (data > root.data) {
+            root.right = ins(root.right, data);
+        }
+        return root;
+    }
+
+    void preorder()
+    {
+        pre(this.root);
+    }
+    void pre(Tree root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data+ "-->");
+        pre(root.left);
+        pre(root.right);
+    }
+
+    void search(int data) {
+        Tree curr = sea(root, data);
+        if (curr == null) {
+            System.out.println("NOT FOUND");
+        } else {
+            System.out.println("Value found: " + curr.data);
+        }
+    }
+
+    Tree sea(Tree root, int data) {
+        if (root == null || root.data == data) {
+            return root;
+        }
+        if (data < root.data) {
+            return sea(root.left, data);
+        } else {
+            return sea(root.right, data);
+        }
+    }
+}
+
+
+class Hari {
+    public static void main(String[] args) {
+        Opr ob = new Opr();
+        ob.insert(5);
+        ob.insert(3);
+        ob.insert(7);
+        ob.insert(6);
+        ob.insert(1);
+        ob.insert(4);
+        ob.preorder();
+        ob.search(99);
+    }
+}
