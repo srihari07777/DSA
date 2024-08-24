@@ -1,0 +1,56 @@
+class Tree {
+    Tree left;
+    int data;
+    Tree right;
+
+    Tree(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+class Opr {
+    Tree root = null;
+
+    void insert(int data)
+    {
+        root = ins(root,data);
+    }
+    Tree ins(Tree root, int data) {
+        if (root == null) {
+            root = new Tree(data);
+            return root;
+        } else if (data < root.data) {
+            root.left = ins(root.left, data);
+        } else if (data > root.data) {
+            root.right = ins(root.right, data);
+        }
+        return root;
+    }
+
+    void preorder()
+    {
+        pre(this.root);
+    }
+    void pre(Tree root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data+ "-->");
+        pre(root.left);
+        pre(root.right);
+    }
+}
+
+class Hari {
+    public static void main(String[] args) {
+        Opr ob = new Opr();
+        ob.insert(5);
+        ob.insert(3);
+        ob.insert(7);
+        ob.insert(6);
+        ob.insert(1);
+        ob.insert(4);
+        ob.preorder();
+    }
+}
